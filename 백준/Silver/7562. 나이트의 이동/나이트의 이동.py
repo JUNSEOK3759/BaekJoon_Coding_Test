@@ -13,6 +13,7 @@ def bfs(x1, y1, x2, y2):
         x, y = dq.popleft()
         if x == x2 and y == y2:
             res = a[x][y]
+            break
         for i in range(8):
             nx = x + dx[i]
             ny = y + dy[i]
