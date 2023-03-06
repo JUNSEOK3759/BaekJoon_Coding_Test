@@ -4,15 +4,17 @@ def solution(x, y, n):
     dq = deque()
     dq.append(x)
     cnt = 0
-    while dq:
-        k = dq.popleft()
-        if k == y:
-            break
-        for next in (k+n, k*2, k*3):
-            if next <= y:
-                if ch[next] == 0:
-                    ch[next] = ch[k] + 1
-                    dq.append(next)
+    def bfs():
+        while dq:
+            k = dq.popleft()
+            if k == y:
+                break
+            for next in (k+n, k*2, k*3):
+                if next <= y:
+                    if ch[next] == 0:
+                        ch[next] = ch[k] + 1
+                        dq.append(next)
+    bfs()
     if x == y:
         return 0
     else:
