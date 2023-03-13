@@ -4,7 +4,7 @@ def solution(n, works):
         return 0
     works = [-i for i in works]
     heapq.heapify(works)
-    print(works)
+
     for _ in range(n):
         x = heapq.heappop(works)
         x += 1
