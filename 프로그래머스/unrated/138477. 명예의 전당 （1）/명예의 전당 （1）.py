@@ -24,12 +24,10 @@ def solution(k, score):
     for i in score:
         if len(x) < k:
             heapq.heappush(x, i)
-            answer.append(min(x))
-        elif len(x) == k:
-            if i > min(x):
-                heapq.heappop(x)
-                heapq.heappush(x, i)
-            answer.append(min(x))
+        elif len(x) == k and i > min(x):
+            heapq.heappop(x)
+            heapq.heappush(x, i)
+        answer.append(min(x))
             
     return answer
     
