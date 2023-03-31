@@ -7,7 +7,6 @@ def solution(order):
         while temp[-1] == order[now]:
             now += 1
             temp.pop()
-            
             if len(temp) == 0:
                 break
         i += 1
