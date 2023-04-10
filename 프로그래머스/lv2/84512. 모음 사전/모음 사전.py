@@ -9,7 +9,5 @@ def solution(word):
             x.append(''.join(j))
     x = list(set(x))
     x.sort()
-    print(x.index('A'),x.index('E'), x.index('I'), x.index('O'), x.index('U'))
-    print(x)
     answer = x.index(word) + 1
     return answer
