@@ -14,7 +14,7 @@ for i in range(len(oil)-1):
         disSum -= dis[i]
     else:
         sum += oil[i] * disSum
-        disSum = 0
         break
 
 print(sum)
+        
