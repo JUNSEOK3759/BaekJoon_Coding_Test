@@ -47,18 +47,20 @@ def solution(maps):
                         dq.append([nx, ny])
                     elif maps[nx][ny] == 'E':
                         return ch[x][y] + 1
-    L = 0    
+    L = 0
+    E = 0
     for i in range(len_x):
         for j in range(len_y):
             if maps[i][j] == 'S':
                 L = bfs_L(i, j)
-                break
-    E = 0
-    for i in range(len_x):
-        for j in range(len_y):
-            if maps[i][j] == 'L':
+            elif maps[i][j] == 'L':
                 E = bfs_E(i, j)
-                break
+    
+    # for i in range(len_x):
+    #     for j in range(len_y):
+    #         if maps[i][j] == 'L':
+    #             E = bfs_E(i, j)
+    #             break
                 
     
     return L + E if L and E else -1
