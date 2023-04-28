@@ -27,7 +27,7 @@ for _ in range(n):
     a.append(int(input()))
 
 
-lt = 1
+lt = 0
 rt = max(a)
 res = 0
 while lt <= rt:
