@@ -26,10 +26,7 @@ a = []
 for _ in range(n):
     a.append(int(input()))
 
-if max(a) == 0:
-    print(0)
-    sys.exit(0)
-    
+
 lt = 1
 rt = max(a)
 res = 0
