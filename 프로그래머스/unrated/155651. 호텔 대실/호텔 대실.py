@@ -1,8 +1,8 @@
 def solution(book_time):
     answer = 0
-    
     book_time.sort(key = lambda x : (x[0], x[1]))
     rent = []
+    
     for i in book_time:
         q = list()
         for j in i:
@@ -11,6 +11,7 @@ def solution(book_time):
         rent.append(q)
     x = []
     x.append(rent[0])
+    
     for i in range(1, len(rent)):
         for j in range(len(x)):
             if rent[i][0] >= x[j][1] + 10:
