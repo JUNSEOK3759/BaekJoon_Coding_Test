@@ -7,3 +7,4 @@ where b.PRODUCE_DATE like '2022-05%'
 group by a.PRODUCT_ID
 
 order by total_sales desc, a.product_id
+
