@@ -1,35 +1,34 @@
 from collections import deque
 def solution(n, wires):
-    answer = -1
-    
-    ch = [[] for _ in range(n+1)]
-    
+    res = 2147483647
+    x = [[] for _ in range(n+1)]
     for a, b in wires:
-        ch[a].append(b)
-        ch[b].append(a)
+        x[a].append(b)
+        x[b].append(a)
     
-    def bfs(x):
-        visit = [0 for _ in range(n+1)]
+    def bfs(k):
         dq = deque()
-        dq.append(x)
-        visit[x] = 1
+        dq.append(k)
         cnt = 0
+        ch = [0 for _ in range(n+1)]
+        ch[k] = 1
         while dq:
-            x = dq.popleft()
-            for i in ch[x]:
-                if visit[i] == 0:
-                    visit[i] = 1
+            k = dq.popleft()
+            for i in x[k]:
+                if ch[i] == 0:
+                    ch[i] = 1
                     dq.append(i)
                     cnt += 1
         return cnt
-    res = n
+    
     for a, b in wires:
-        ch[a].remove(b)
-        ch[b].remove(a)
+        x[a].remove(b)
+        x[b].remove(a)
         
-        res = min(abs(bfs(a)-bfs(b)), res)
+        res = min(abs(bfs(a) - bfs(b)), res)
         
-        ch[a].append(b)
-        ch[b].append(a)
+        x[a].append(b)
+        x[b].append(a)
+        
     
     return res
