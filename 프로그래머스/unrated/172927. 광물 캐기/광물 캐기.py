@@ -27,7 +27,4 @@ def solution(picks, minerals):
             for j in i:
                 answer += stoneScore[j]
         
-        else:
-            break
-        
     return answer
