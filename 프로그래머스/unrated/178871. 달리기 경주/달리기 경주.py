@@ -5,12 +5,12 @@ def solution(players, callings):
     for i in range(len(players)):
         player[players[i]] = i+1
         rank[i+1] = players[i]
-    
-    for i in callings:
-        currentIndex = player[i]
-        player[i] = currentIndex-1
-        player[rank[currentIndex-1]] = currentIndex
         
-        rank[currentIndex] = rank[currentIndex-1]
-        rank[currentIndex-1] = i
+    for i in callings:
+        current = player[i]
+        player[i] = current-1
+        player[rank[current-1]] = current
+        rank[current] = rank[current-1]
+        rank[current-1] = i
+        
     return list(rank.values())
