@@ -6,5 +6,5 @@ def solution(n):
             n = n // 2
         else:
             cnt += 1
-            n = n // 2
+            n -=1
     return cnt
