@@ -1,10 +1,12 @@
+from collections import deque
 def solution(n):
-    cnt = 1
+    ans = 0
     
-    while n != 1:
+    while n > 0:
         if n % 2 == 0:
             n = n // 2
         else:
-            cnt += 1
-            n -=1
-    return cnt
+            ans += 1
+            n -= 1
+    
+    return ans
