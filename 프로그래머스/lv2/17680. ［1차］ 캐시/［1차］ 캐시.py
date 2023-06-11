@@ -1,18 +1,18 @@
 def solution(cacheSize, cities):
     answer = 0
-    a = []
+    x = []
+    if cacheSize == 0:
+        return len(cities) * 5
     for i in cities:
         i = i.lower()
-        if i not in a:
-            if len(a) < cacheSize:
-                a.append(i)
-            else:
-                a.append(i)
-                a.pop(0)
-                
+        if i not in x:
+            if len(x) == cacheSize:
+                x.pop(0)
+            x.append(i)
             answer += 5
         else:
             answer += 1
-            a.pop(a.index(i))
-            a.append(i)
+            x.remove(i)
+            x.append(i)
+            
     return answer
