@@ -1,11 +1,7 @@
 def solution(s):
-    maxi = -2147483647
-    mini = 2147483647
-    for i in s.split():
-        x = int(i)
-        if x > maxi:
-            maxi = x
-        if x < mini:
-            mini = x
-    answer = str(mini) + ' '+ str(maxi)
-    return answer
+    answer = ''
+    s = s.split(' ')
+    for i in range(len(s)):
+        s[i] = int(s[i])
+        
+    return f"{min(s)} {max(s)}"
