@@ -1,9 +1,12 @@
+import re
 def solution(s):
-    s = s.lower()
-    s = list(s)
-    if s[0].isalpha():
-        s[0] = s[0].upper()
-    for i in range(1, len(s)):
-        if s[i-1] == ' ' and s[i].isalpha():
-            s[i] = s[i].upper()
-    return ''.join(s)
+    answer = []
+    s = s.split(' ')
+    
+    for i in s:
+        if i:
+            answer.append(i[0].upper() + i[1:].lower())
+        else:
+            answer.append(i)
+    
+    return ' '.join(answer)
