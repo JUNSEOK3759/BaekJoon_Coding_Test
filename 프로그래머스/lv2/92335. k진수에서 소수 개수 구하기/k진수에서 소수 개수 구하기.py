@@ -9,6 +9,7 @@ def solution(n, k):
             s += str(n % k)
             n = n // k
         return s[::-1]
+
     def isPrime(i):
         if i in [0, 1]:
             return False
@@ -18,7 +19,8 @@ def solution(n, k):
             if i % x == 0:
                 return False
         else:
-            return True    
+            return True
+
     x = makkk(n)
     x = x.split('0')
     for i in x:
