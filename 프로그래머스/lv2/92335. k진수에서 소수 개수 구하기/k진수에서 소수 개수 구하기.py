@@ -1,21 +1,28 @@
+import re
+import math
 def solution(n, k):
-    deq = ''
-    while n:
-        deq = str(n%k) + deq
-        n = n//k
-    print(deq)
-    deq = deq.split('0')
-    cnt = 0
-    for i in deq:
-        if len(i) == 0:
-            continue
-        if int(i) == 1:
-            continue
-        prime = True
-        for j in range(2, int(float(i) ** (1/2))+1):
-            if int(i)%j == 0:
-                prime = False
-                break
-        if prime:
-            cnt += 1
-    return cnt
+    answer = 0
+    
+    def makkk(n):
+        s = ''
+        while n > 0:
+            s += str(n % k)
+            n = n // k
+        return s[::-1]
+    def isPrime(i):
+        if i in [0, 1]:
+            return False
+        if i == 2:
+            return True
+        for x in range(2, int(math.sqrt(i))+1):
+            if i % x == 0:
+                return False
+        else:
+            return True    
+    x = makkk(n)
+    x = x.split('0')
+    for i in x:
+        if i.isdigit():
+            if isPrime(int(i)):
+                answer += 1
+    return answer
