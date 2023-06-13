@@ -1,19 +1,15 @@
 def solution(msg):
     answer = []
-    dic = {}
-    
-    for i in range(65, 91):
-        dic[chr(i)] = i - 64
-    
-    s = 0
-    e = 0
+    a = {chr(i) : i-64 for i in range(65, 65+26)}
+    lt = 0
+    rt = 1
     while True:
-        e += 1
-        if e == len(msg):
-            answer.append(dic[msg[s : e]])
+        if rt == len(msg):
+            answer.append(a[msg[lt:rt]])
             break
-        if msg[s: e+1] not in dic:
-            dic[msg[s : e+1]] = len(dic) + 1
-            answer.append(dic[msg[s : e]]) # 새로운 글자 이전까지의 딕셔너리 값
-            s = e
+        if msg[lt:rt+1] not in a:
+            a[msg[lt:rt+1]] = len(a) + 1
+            answer.append(a[msg[lt:rt]])
+            lt = rt
+        rt += 1
     return answer
