@@ -1,21 +1,22 @@
+import math
 import itertools
-def isPrime(x):
-    answer = len(x)
-    for i in x:
-        if i in [0, 1]:
-            answer -= 1
-        for j in range(2, i):
-            if i % j == 0:
-                answer -=1
-                break
-    return answer
-
 def solution(numbers):
-    x = set()
-    numbers = list(numbers)
-    for i in range(1, len(numbers)+1):
-        for j in list(itertools.permutations(numbers,i)):
-            x.add(int(''.join(j)))
-    x = list(x)
-    
-    return isPrime(x)
+    answer = set()
+    num = list(numbers)
+    def isPrime(x):
+        if x in [0, 1]:
+            return False
+        if x == 2:
+            return True
+        for i in range(2, int(math.sqrt(x))+1):
+            if x % i == 0:
+                return False
+        else:
+            return True    
+            
+    for i in range(1, len(num)+1):
+        for j in itertools.permutations(num,i):
+            x = int(''.join(j))
+            if isPrime(x):
+                answer.add(x)
+    return len(answer)
