@@ -1,24 +1,20 @@
 from collections import deque
 def solution(x, y, n):
-    ch = [0 for _ in range(y+10)]
-    dq = deque()
-    dq.append(x)
-    cnt = 0
-    def bfs():
-        while dq:
-            k = dq.popleft()
-            if k == y:
-                break
-            for next in (k+n, k*2, k*3):
-                if next <= y:
-                    if ch[next] == 0:
-                        ch[next] = ch[k] + 1
-                        dq.append(next)
-    bfs()
+    answer = 0
+    ch = [0 for _ in range(y+1)]
     if x == y:
         return 0
-    else:
-        return ch[y] if ch[y] > 0 else -1
-
+    def bfs(k):
+        dq = deque()
+        dq.append(k)
         
-        
+        while dq:
+            x = dq.popleft()
+            if x == y:
+                break
+            for next in (x + n, x * 2, x * 3):
+                if next <= y and ch[next] == 0:
+                    ch[next] = ch[x] + 1
+                    dq.append(next)
+    bfs(x)
+    return ch[-1] if ch[-1] else -1
