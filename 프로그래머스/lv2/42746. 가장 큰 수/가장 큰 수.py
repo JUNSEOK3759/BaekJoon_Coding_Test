@@ -1,4 +1,6 @@
 def solution(numbers):
-    numbers = list(map(str, numbers))
-    numbers.sort(key = lambda x : x * 3 , reverse = True)
-    return str(int(''.join(numbers)))
+    answer = ''
+    numbers.sort(key = lambda x : ((str(x)*3)[:4]), reverse = True)
+    for i in numbers:
+        answer += str(i)
+    return str(int(answer))
