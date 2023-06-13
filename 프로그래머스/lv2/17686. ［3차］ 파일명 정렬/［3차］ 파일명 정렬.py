@@ -1,25 +1,26 @@
+from collections import deque
 def solution(files):
-    name = []
-    
-    for x in files:
-        a, b, c = '','',''
-        qw = 0
-        for j in range(len(x)):
-            if x[j].isdigit():
-                a = x[:j]
-                qw = j
-                break
-        for k in range(qw, len(x)):
-            
-            if not x[k].isdigit():
-                b = x[qw:k]
-                c = x[k:]
+    answer = []
+    x = []
+    for i in range(len(files)):
+        h, n, t = '', '', ''
+        cnt = 0
+        while not files[i][cnt].isdigit():
+            h += files[i][cnt]
+            cnt += 1
+        for j in range(cnt, len(files[i])):
+            if not files[i][j].isdigit():
+                n = files[i][cnt : j]
+                cnt = j
+                t = files[i][j:]
                 break
         else:
-            b = x[qw:]       
-        name.append([a, b, c])
-    name.sort(key = lambda x : (x[0].lower(), int(x[1])))
-    
-    for i in range(len(name)):
-        name[i] = ''.join(name[i]) 
-    return name
+            n = files[i][cnt:]    
+        
+        x.append([h, n, t])
+        
+            
+    x.sort(key = lambda x : (x[0].lower(), int(x[1])))
+    for i in x:
+        answer.append(''.join(i))
+    return answer
