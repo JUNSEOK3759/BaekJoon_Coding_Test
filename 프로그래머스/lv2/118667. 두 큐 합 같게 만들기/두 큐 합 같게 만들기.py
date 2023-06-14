@@ -1,25 +1,27 @@
 from collections import deque
 def solution(queue1, queue2):
     answer = 0
-    deq1 = deque(queue1)
-    deq2 = deque(queue2)
-    maxi = max(max(deq1), max(deq2))
-    sum1 = sum(deq1)
-    sum2 = sum(deq2)
-    if maxi > (sum1 + sum2) // 2:
+    dq1 = deque(queue1)
+    dq2 = deque(queue2)
+    s1, s2 = sum(dq1), sum(dq2)
+    if s1 + s2 % 2 == 1:
         return -1
-    while sum1 != sum2:
-        answer += 1
-        if sum1 > sum2:
-            x = deq1.popleft()
-            deq2.append(x)
-            sum1 -= x
-            sum2 += x
-        else:
-            y = deq2.popleft()
-            deq1.append(y)
-            sum1 += y
-            sum2 -= y
-        if answer == len(queue1) * 3:
+    cnt = 0
+    length = len(dq1) + len(dq2)
+    while s1 != s2:
+        
+        if answer == length+10:
             return -1
+        if s1 > s2:
+            x = dq1.popleft()
+            s1 -= x
+            dq2.append(x)
+            s2 += x
+        else:
+            x = dq2.popleft()
+            s2-=x
+            dq1.append(x)
+            s1 += x
+        answer += 1
+    
     return answer
