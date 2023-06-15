@@ -1,10 +1,12 @@
-def solution(ingredient):
+from collections import deque
+def solution(a):
     answer = 0
-    y = []
-    for i in ingredient:
-        y.append(i)
-        if y[-4:] == [1,2,3,1]:
-            answer += 1
+    a = deque(a)
+    stack = []
+    while a:
+        stack.append(a.popleft())
+        if stack and stack[-4:] == [1, 2, 3, 1]:
             for _ in range(4):
-                y.pop()
+                stack.pop()
+            answer += 1
     return answer
