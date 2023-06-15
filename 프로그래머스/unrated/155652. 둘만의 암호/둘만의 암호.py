@@ -1,10 +1,10 @@
 import re
 def solution(s, skip, index):
+    alp = [chr(i) for i in range(97, 97+ 26)]
+    alp = ''.join(alp)
     answer = ''
-    
-    alpha = 'abcdefghijklmnopqrstuvwxyz'
     for i in skip:
-        alpha = re.sub(i, '', alpha)
+        alp = re.sub(i, '', alp)
     for i in s:
-        answer += alpha[(alpha.index(i)+ index) % len(alpha)]
+        answer += alp[(alp.index(i) + index) % len(alp)]
     return answer
