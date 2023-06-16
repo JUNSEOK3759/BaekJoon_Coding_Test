@@ -1,6 +1,6 @@
 import re
 def solution(m, musicinfos):
-    answer = [0, 0]
+    answer = ['(None)', 0]
     for i in musicinfos:
         x, y, z, w = i.split(',')
         for i in range(65, 73):
@@ -19,4 +19,4 @@ def solution(m, musicinfos):
             if len(res) > answer[1]:
                 answer = [z,len(res)]
     
-    return answer[0] if answer != [0, 0] else '(None)'
+    return answer[0] 
