@@ -1,11 +1,13 @@
 def solution(dirs):
     answer = set()
-    x = {'U' : [0, 1], 'D' : [0, -1], 'L' : [-1, 0], 'R' : [1, 0]}
-    s = (0, 0)
+    move = {'U':[0, 1], 'D' : [0, -1], 'L' : [-1, 0], 'R': [1, 0]}
+    x = (0, 0)
     for i in dirs:
-        nx = s[0] + x[i][0]
-        ny = s[1] + x[i][1]
-        if -6 < nx < 6 and -6 < ny < 6:
-            answer.add(tuple(sorted(((s[0],s[1]),(nx,ny)))))
-            s = (nx, ny)
+        a = x[0] + move[i][0]
+        b = x[1] + move[i][1]
+        if -6 < a < 6 and -6 < b < 6:
+            q = sorted([(x[0], x[1]), (a, b)])
+            answer.add(tuple(q))
+            x = (a, b)
     return len(answer)
+
