@@ -1,21 +1,20 @@
 import math
 def solution(begin, end):
-    MAX = 10000000
-    def isValue(i):
-        k = 1
-        for x in range(2, int(math.sqrt(i))+1):
-            if i % x == 0:
-                k = x
-                if i // x <= MAX:
-                    return  i // x
-        else:
-            return k
     answer = []
+    def res(x):
+        k = 1
+        if x == 1:
+            return 0
+        if x == 2:
+            return 1
+        for i in range(2, int(math.sqrt(x))+1):
+            if x % i == 0:
+                k = i
+                if x // i <= 10000000:
+                    return (x//i)
+        else:
+            return k       
     
     for i in range(begin, end + 1):
-        if i > 1:
-            x = isValue(i)
-            answer.append(x)
-        else:
-            answer.append(0)
+        answer.append(res(i))
     return answer
