@@ -5,6 +5,7 @@ def solution(n):
     while True:
         a = n // 3
         b = n % 3
+        
         if a > 0 and b == 0:
             a -= 1
         answer = x[b] + answer
