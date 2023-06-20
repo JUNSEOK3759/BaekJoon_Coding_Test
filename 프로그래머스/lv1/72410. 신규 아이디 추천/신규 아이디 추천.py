@@ -1,5 +1,6 @@
 from collections import deque
 import re
+
 def firstLastDot(x):
     if x[0] == '.':
         x.popleft()
@@ -9,6 +10,7 @@ def firstLastDot(x):
         return ''.join(x)
     else:
         return 'a'
+    
 def solution(new_id):
     n = new_id.lower()
     x = ''
