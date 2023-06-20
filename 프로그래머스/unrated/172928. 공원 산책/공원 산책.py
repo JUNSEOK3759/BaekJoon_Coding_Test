@@ -1,62 +1,57 @@
 from collections import deque
 def solution(park, routes):
-    answer = []
-    len_x = len(park)
-    len_y = len(park[0])
+    len_x, len_y = len(park), len(park[0])
+    move = {'E': [0, 1], 'W': [0, -1], 'S': [1, 0], 'N': [-1, 0]}
     
-    def bfs(i, j, answer):
+    def bfs(i, j):
         dq = deque()
         dq.append([i, j])
-        answer = [i, j]
+        res = [i, j]
         cnt = 0
         while dq and cnt < len(routes):
             x, y = dq.popleft()
-            z, w = routes[cnt].split(' ')
+            a, b = routes[cnt].split(' ')
             cnt += 1
-            w = int(w)
-            if z == 'E' and -1 < y+w < len_y:
-                for i in range(y, y+w+1):
-                    if park[x][i] == 'X':
-                        dq.append([x, y])
-                        break
-                else:
-                    dq.append([x, y+w])
-                    answer = [x, y+w]
-            elif z == 'W' and -1 < y-w < len_y:
-                for i in range(y-w, y+1):
-                    if park[x][i] == 'X':
-                        dq.append([x, y])
-                        break
-                else:
-                    dq.append([x, y-w])
-                    answer = [x, y-w]
-                    
-            elif z == 'S' and -1 < x+w < len_x:
-                for i in range(x, x+w+1):
-                    if park[i][y] == 'X':
-                        dq.append([x, y])
-                        break
-                else:
-                    dq.append([x+w, y])
-                    answer = [x+w, y]
-                    
-            elif z == 'N' and -1 < x-w < len_x:
-                for i in range(x-w,x+1):
-                    if park[i][y] == 'X':
-                        dq.append([x, y])
-                        break
-                else:
-                    dq.append([x-w, y])
-                    answer = [x-w, y]
-
+            nx = x + (move[a][0] * int(b))
+            ny = y + (move[a][1] * int(b))
+            if -1 < nx < len_x and -1 < ny < len_y:
+                if a == 'E':
+                    for j in range(y, ny+1):
+                        if park[nx][j] == 'X':
+                            dq.append([x, y])
+                            break
+                    else:
+                        dq.append([nx, ny])
+                        res = [nx, ny]
+                elif a == 'W':
+                    for j in range(ny, y+1):
+                        if park[nx][j] == 'X':
+                            dq.append([x, y])
+                            break
+                    else:
+                        dq.append([nx, ny])
+                        res = [nx, ny]
+                elif a == 'S':
+                    for j in range(x, nx+1):
+                        if park[j][ny] == 'X':
+                            dq.append([x, y])
+                            break
+                    else:
+                        dq.append([nx, ny])
+                        res = [nx, ny]
+                elif a == 'N':
+                    for j in range(nx, x+1):
+                        if park[j][ny] == 'X':
+                            dq.append([x, y])
+                            break
+                    else:
+                        dq.append([nx, ny])
+                        res = [nx, ny]
             else:
-                dq.append([x, y])
-                
-        return answer
-    
+                dq.append([x, y]) 
+        return res
     
     for i in range(len_x):
         for j in range(len_y):
             if park[i][j] == 'S':
-                res = bfs(i, j, answer)
-                return res
+                return bfs(i,j)
