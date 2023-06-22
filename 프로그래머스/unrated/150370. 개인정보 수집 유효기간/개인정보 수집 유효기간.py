@@ -1,13 +1,18 @@
 def solution(today, terms, privacies):
     answer = []
-    def calendar(n):
-        x,  y = n.split()
-        a, b, c = x.split('.')
+    
+    def separate(n):
+        a, b, c = n.split('.')
         k = (int(a) * 28 * 12) + (int(b) * 28) + int(c)
+        return k
+    
+    def calendar(n):
+        x, y = n.split()
+        k = separate(x)
         return k, y
     
-    x, y, z = today.split('.')
-    tod = (int(x)* 28 * 12) + (int(y) * 28) + int(z)
+    tod = separate(today)
+    
     a = {}
     for i in terms:
         x, y =i.split(' ')
