@@ -1,15 +1,22 @@
 def solution(today, terms, privacies):
     answer = []
-    t1, t2, t3 = today.split(".")
-    t = (int(t1)*336) + (int(t2) * 28) + int(t3)
-    term = {}
+    def calendar(n):
+        x,  y = n.split()
+        a, b, c = x.split('.')
+        k = (int(a) * 28 * 12) + (int(b) * 28) + int(c)
+        return k, y
+    
+    x, y, z = today.split('.')
+    tod = (int(x)* 28 * 12) + (int(y) * 28) + int(z)
+    a = {}
     for i in terms:
-        x, y = i.split(" ")
-        term[x] = int(y) * 28
+        x, y =i.split(' ')
+        a[x] = int(y) * 28
+    
     for i in range(len(privacies)):
-        x, y = privacies[i].split(' ')
-        x1, x2, x3 = x.split('.')
-        totX = (int(x1)*336) + (int(x2) * 28) + int(x3)
-        if abs(totX - t) >= term[y]:
+        day, alp = calendar(privacies[i])
+        day += a[alp]
+        if tod >= day:
             answer.append(i+1)
+    
     return answer
