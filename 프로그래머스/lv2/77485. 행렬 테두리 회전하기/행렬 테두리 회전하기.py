@@ -4,8 +4,8 @@ def solution(rows, columns, queries):
     for i in queries:
         x1, y1, x2, y2 = i
         x1, y1, x2, y2 = x1-1 , y1-1 , x2-1 , y2-1 
-        y21 = a[x1][y2]
-        y11 = a[x2][y1]
+        rightTop = a[x1][y2]
+        leftBottom = a[x2][y1]
         mini = 2147483647
         for j in range(y2, y1, -1):
             a[x1][j] = a[x1][j-1]
@@ -19,10 +19,10 @@ def solution(rows, columns, queries):
         for j in range(x2, x1, -1):
             a[j][y2] = a[j-1][y2]
             mini = min(a[j][y2], mini)
-        a[x1+1][y2] = y21
-        a[x2-1][y1] = y11
+        a[x1+1][y2] = rightTop
+        a[x2-1][y1] = leftBottom
         
-        mini = min(mini, y21, y11)
+        mini = min(mini, rightTop, leftBottom)
         
         answer.append(mini)
         
