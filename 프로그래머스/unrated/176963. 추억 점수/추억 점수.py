@@ -1,14 +1,11 @@
 def solution(name, yearning, photo):
     answer = []
-    a = {}
-    for i in range(len(name)):
-        a[name[i]] = yearning[i]
+    info = dict(zip(name, yearning))
     
-    for i in photo:
-        res = 0
-        for j in i:
-            if j in a:
-                res += a[j]
-        answer.append(res)
-    
+    for people in photo:
+        score = 0
+        for person in people:
+            if person in info:
+                score += info[person]
+        answer.append(score)
     return answer
