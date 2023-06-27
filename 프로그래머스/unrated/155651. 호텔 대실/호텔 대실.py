@@ -1,22 +1,21 @@
-def solution(book_time):
+def solution(book):
     answer = 0
-    book_time.sort(key = lambda x : (x[0], x[1]))
-    rent = []
+    for i in range(len(book)):
+        a, b = book[i][0], book[i][1]
+        x, y = a.split(':')
+        z, w = b.split(':')
+        book[i][0] = int(x) * 60 + int(y)
+        book[i][1] = int(z) * 60 + int(w) + 10
+    a = {}
     
-    for i in book_time:
-        q = list()
-        for j in i:
-            x, y = j.split(":")
-            q.append(int(x) * 60 + int(y))
-        rent.append(q)
-    x = []
-    x.append(rent[0])
-    
-    for i in range(1, len(rent)):
-        for j in range(len(x)):
-            if rent[i][0] >= x[j][1] + 10:
-                x[j] = rent[i]
+    book.sort()
+    a[0] = book[0]
+
+    for i in range(1, len(book)):
+        for x, y in a.items():
+            if book[i][0] >= y[1]:
+                a[x] = book[i]
                 break
         else:
-            x.append(rent[i])
-    return len(x)
+            a[i] = book[i]    
+    return len(a)
