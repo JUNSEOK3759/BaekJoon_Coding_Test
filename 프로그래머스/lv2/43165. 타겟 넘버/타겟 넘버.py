@@ -6,7 +6,7 @@ def solution(numbers, target):
         if l == n:
             if summ == target:
                 answer += 1
-            return 
+
         else:
             dfs(l+1, summ + numbers[l])
             dfs(l+1, summ - numbers[l])
