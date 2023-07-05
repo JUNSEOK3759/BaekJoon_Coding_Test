@@ -1,36 +1,37 @@
 from collections import deque
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-def solution(a):
-    def bfs(x, y, d):
+def solution(board):
+    
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+    def bfs(i, j):
         dq = deque()
-        dq.append([x, y, d])
+        dq.append([i, j])
         
         while dq:
-            x, y, d= dq.popleft()
+            x, y = dq.popleft()
             
-            if a[x][y] == 'G':
-                return d
-            
+            if board[x][y] == 'G':
+                return ch[x][y]
             for i in range(4):
                 nx = x
                 ny = y
-                while (-1 < nx + dx[i] < n and -1 < ny + dy[i] < m and a[nx + dx[i]][ny + dy[i]] != 'D'):
+                
+                while -1< nx + dx[i] < n and -1 < ny + dy[i] < m and board[nx+dx[i]][ny + dy[i]] != 'D':
                     nx += dx[i]
                     ny += dy[i]
-                if ch[nx][ny] > d+1:
-                    ch[nx][ny] = d+1
-                    dq.append([nx, ny, d+1])
+                if ch[nx][ny] > ch[x][y] +1:
+                    ch[nx][ny] = ch[x][y] + 1
+                    dq.append([nx, ny])
         return -1
-    answer = 0
-    n = len(a)
-    m = len(a[0])
-    cnt = 0
+        
+    
+    n = len(board)
+    m = len(board[0])
     ch = [[2147483647 for _ in range(m)] for _ in range(n)]
+    cnt = 0
     for i in range(n):
         for j in range(m):
-            if a[i][j] == 'R':
+            if board[i][j] == 'R':
                 ch[i][j] = 0
-                cnt = bfs(i, j, 0)
-    return cnt 
-
+                cnt = bfs(i, j)
+    return cnt
