@@ -1,24 +1,24 @@
 import math
 def solution(arrayA, arrayB):
     answer = 0
+    a = arrayA[0]
+    b = arrayB[0]
+    for i in arrayA:
+        a = math.gcd(a, i)
     
-    def findGCD(array):
-        gcd = 0
-        for i in range(len(array)):
-            gcd = math.gcd(gcd, array[i])
-        return gcd
+    for i in arrayB:
+        b = math.gcd(b, i)
     
-    def checkGCD(array, gcd):
-        for i in range(len(array)):
-            if array[i] % gcd == 0:
-                return 0
-            
-        return gcd
+    for i in arrayA:
+        if i % b == 0:
+            break
+    else:
+         answer = max(answer, b)
     
-    gcdA, gcdB = findGCD(arrayA), findGCD(arrayB)
-    gcdA, gcdB = checkGCD(arrayB, gcdA), checkGCD(arrayA, gcdB)
+    for i in arrayB:
+        if i % a == 0:
+            break
+    else:
+         answer = max(answer, a)   
     
-    if gcdA == 0 and gcdB == 0:
-        return 0
-    
-    return max(gcdA, gcdB)
+    return answer
