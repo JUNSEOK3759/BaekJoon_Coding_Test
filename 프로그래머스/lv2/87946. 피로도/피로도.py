@@ -1,13 +1,15 @@
 import itertools
 def solution(k, dungeons):
-    answer = 0
+    answer = -2147483647
+    
     for per in itertools.permutations(dungeons, len(dungeons)):
         hp = k
         cnt = 0
-        for pm in per:
-            if hp >= pm[0]:
-                hp -= pm[1]
+        
+        for i in per:
+            x, y = i
+            if x <= hp:
+                hp -= y
                 cnt += 1
-        if cnt > answer:
-            answer = cnt
+        answer = max(cnt, answer)
     return answer
