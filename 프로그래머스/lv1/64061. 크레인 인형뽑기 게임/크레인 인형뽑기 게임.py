@@ -1,15 +1,17 @@
+from collections import deque
 def solution(board, moves):
-    answer = []
-    cnt = 0
-    for i in moves:
-        for j in range(len(board[0])):
-            if board[j][i-1] != 0:
-                answer.append(board[j][i-1])
-                board[j][i-1] = 0
+    answer = 0
+    moves = deque(moves)
+    stack = []
+    while moves:
+        x = moves.popleft()-1
+        for i in range(len(board)):
+            if board[i][x] != 0:
+                stack.append(board[i][x])
+                board[i][x] = 0
                 break
-        if len(answer) > 1:
-            if answer[-1] == answer[-2]:
-                answer.pop()
-                answer.pop()
-                cnt += 2
-    return cnt
+        if len(stack) >= 2 and stack[-1] == stack[-2]:
+            stack.pop()
+            stack.pop()
+            answer += 2
+    return answer
