@@ -19,8 +19,6 @@ def solution(a):
     a = sorted(list(set(a)))
     for com in itertools.combinations(a, 2):
         q, w = com
-        if q == w:
-            continue
-        elif q * l == w * m or q * l == w * n or q * m == w * n:
+        if q * l == w * m or q * l == w * n or q * m == w * n:
             answer += diction[q] * diction[w]
     return answer
