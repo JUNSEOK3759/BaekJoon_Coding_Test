@@ -1,20 +1,16 @@
 import itertools
+from collections import Counter
 def solution(a):
     answer = 0
     a.sort()
-    cnt = 0
-    diction = {}
-    while cnt < len(a):
-        x = a.count(a[cnt])
-        diction[a[cnt]] = x
-        if x > 1:
-            if x == 2:
-                answer += 1
-            else:
-                answer += x * (x-1) // 2
-            cnt += x
+    diction = Counter(a)
+    
+    for i in diction.values():
+        if i == 2:
+            answer += 1
         else:
-            cnt += 1
+            answer += i *(i-1) // 2
+    
     l, m, n = 4, 3, 2 
     a = sorted(list(set(a)))
     for com in itertools.combinations(a, 2):
