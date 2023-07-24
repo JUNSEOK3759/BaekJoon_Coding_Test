@@ -1,6 +1,5 @@
--- 코드를 입력하세요
-SELECT distinct a.CAR_ID
-from CAR_RENTAL_COMPANY_CAR a join CAR_RENTAL_COMPANY_RENTAL_HISTORY b
-on a.CAR_ID = b.CAR_ID
-where month(START_DATE) = 10 and CAR_TYPE = '세단'
-order by a.CAR_ID desc
+SELECT distinct(A.CAR_ID)
+FROM CAR_RENTAL_COMPANY_CAR A JOIN CAR_RENTAL_COMPANY_RENTAL_HISTORY B
+ON A.CAR_ID = B.CAR_ID
+WHERE A.CAR_TYPE = '세단' AND DATE_FORMAT(B.START_DATE, '%Y-%m-%d') >= '2022-10-01'
+order by a.car_id desc
