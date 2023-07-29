@@ -1,20 +1,20 @@
-def solution(n):
-    p = [[1, 2, 3, 4, 5], [2, 1, 2, 3, 2, 4, 2, 5], [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]]
-
-    res = [0 for _ in range(3)]
-    for x, y in enumerate(n):
-        if y == p[0][x % len(p[0])]:
-            res[0] += 1
-        if y == p[1][x % len(p[1])]:
-            res[1] += 1
-
-        if y == p[2][x % len(p[2])]:
-            res[2] += 1
-        ans = []
-    for i, x in enumerate(res):
-        if x == max(res):
-            ans.append(i+1)
-    
-    
-        
-    return ans
+def solution(answers):
+    answer = []
+    mathLoser = [[1,2,3,4,5], [2,1,2,3,2,4,2,5], [3,3,1,1,2,2,4,4,5,5]]
+    len_answer = len(answers)
+    for i in mathLoser:
+        len_i = len(i)
+        div = len_answer // len_i
+        mod = len_answer % len_i
+        compare = i*div + i[:mod]
+        cnt = 0
+        for j in range(len(compare)):
+            if compare[j] == answers[j]:
+                cnt += 1
+        answer.append(cnt)
+    x = max(answer)
+    y = []
+    for i in range(len(answer)):
+        if answer[i] == x:
+            y.append(i+1)
+    return y
