@@ -1,10 +1,11 @@
+import math
 def solution(brown, yellow):
     answer = []
-    x = brown + yellow
-    for i in range(3, x+1):
-        if (x / i) % 1 == 0:
-            y = x // i
-            if i >= y:
-                if (2*i) + (2*y) == brown + 4:
-                    answer = [i, y]
+    total = brown + yellow
+    for b in range(1, total+1):
+        if (total/b) % 1 == 0:
+            a = total / b
+            if a >= b:
+                if 2*a + 2*b == brown + 4:
+                    return[a, b]
     return answer
