@@ -1,24 +1,25 @@
 import heapq
-from collections import deque
 def solution(operations):
-    heap = []
-    heap1 = []
-    heapq.heapify(heap)
+    answer = []
+    
+    heapq.heapify(answer)
+    
     for i in operations:
-        x, y = i.split(" ")
-        if x == "I":
-            y = int(y)
-            heapq.heappush(heap, y)
+        x, y = i.split(' ')
+        y = int(y)
+        
+        if x == 'I':
+            heapq.heappush(answer, y)
         else:
-            if heap:
-                if y == "1":
-                    heapq._heapify_max(heap)
-                    heapq._heappop_max(heap)
-                    heapq.heapify(heap)
-                    
+            if answer:
+                if y == -1:
+                    heapq.heappop(answer)
                 else:
-                    heapq.heappop(heap)
-    if heap:
-        return [max(heap), min(heap)]
+                    heapq._heapify_max(answer)
+                    heapq._heappop_max(answer)
+                    heapq.heapify(answer)
+        
+    if answer:
+        return [max(answer), min(answer)]
     else:
         return [0, 0]
