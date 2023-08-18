@@ -17,14 +17,15 @@ def check(m, n, board):
     if cnt == 0:
         return 0
     
-    for i in range(m-2, -1, -1):
-        for j in range(n):
-            k = i
-            while 0 <= k+1 < m and board[k+1][j] == 0:
-                k += 1
-            if k != i:
-                board[k][j] = board[i][j]
-                board[i][j] = 0
+    while True:
+        move = 0
+        for i in range(m-1):
+            for j in range(n):
+                if board[i][j] != 0 and board[i+1][j] == 0:
+                    board[i][j], board[i+1][j] = board[i+1][j], board[i][j]
+                    move = 1
+        if move == 0:
+            break
     return cnt
     
 def solution(m, n, board):
