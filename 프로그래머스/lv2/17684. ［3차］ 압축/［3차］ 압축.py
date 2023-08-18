@@ -1,19 +1,19 @@
 def solution(msg):
     answer = []
-    alpha = {chr(i): i-64 for i in range(65, 65 + 26)}
-    
+    alp = {chr(i+64) : i for i in range(1, 27)}
+    n = len(msg)
     lt = 0
     rt = 1
-    
+    cnt  = 0
     while True:
+        cnt += 1
         if rt == len(msg):
-            answer.append(alpha[msg[lt:rt]])
+            answer.append(alp[msg[lt:rt+1]])
             break
-        if msg[lt : rt+1] not in alpha:
-            answer.append(alpha[msg[lt:rt]])
-            alpha[msg[lt:rt+1]] = len(alpha) + 1
+        if msg[lt:rt+1] not in alp:
+            alp[msg[lt:rt+1]] = len(alp) + 1
+            answer.append(alp[msg[lt : rt]])
             lt = rt
         rt += 1
-    
-    return answer
 
+    return answer
