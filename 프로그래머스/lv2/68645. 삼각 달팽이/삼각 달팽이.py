@@ -1,8 +1,8 @@
 def solution(n):
-    answer = []
     a = [[0 for _ in range(n)] for _ in range(n)]
     x, y = -1, 0
     k = 1
+    
     for i in range(n):
         for _ in range(i, n):
             if i % 3 == 0:
@@ -15,4 +15,3 @@ def solution(n):
             a[x][y] = k
             k += 1
     return [j for i in a for j in i if j != 0]
-
