@@ -1,9 +1,8 @@
-def solution(A,B):
+def solution(a, b):
     answer = 0
-    A.sort()
-    B.sort(reverse = True)
+    a.sort()
+    b.sort(reverse = True)
     
-    for i in range(len(A)):
-        answer += A[i] * B[i]
-    
+    for i in range(len(a)):
+        answer += a[i] * b[i]
     return answer
