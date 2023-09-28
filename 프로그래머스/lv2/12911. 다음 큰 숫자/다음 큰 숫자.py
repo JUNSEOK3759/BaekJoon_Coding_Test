@@ -1,18 +1,15 @@
+def makeBinary(n):
+    s = ''
+    while n:
+        s += str(n%2)
+        n = n//2
+    return s[::-1]
+
 def solution(n):
     answer = 0
-    def makeBinary(k):
-        x = ''
-        while k > 0:
-            x += str(k % 2)
-            k = k // 2
-        return list(x[::-1])
     x = makeBinary(n)
-    cnt = 1
-    asd = x.count('1')
-    while True:
-        z = makeBinary(n + cnt)
-        if z.count('1') == asd:
-            return n+cnt
-        else:
-            cnt += 1
-            
+    cnt = 0
+    for i in range(n+1, 1000000):
+        y = makeBinary(i)
+        if x.count('1') == y.count('1'):
+            return i
