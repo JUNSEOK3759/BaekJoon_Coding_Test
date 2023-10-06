@@ -1,6 +1,6 @@
-set @hour := -1;
+SET @HOUR := -1;
 
-SELECT (@hour := @hour + 1) as hour,
-(select count(*) from ANIMAL_OUTS where hour(datetime) = @hour) as count
-from ANIMAL_OUTS
-where @hour < 23
+SELECT(@HOUR := @HOUR +1) AS HOUR,
+(SELECT COUNT(*) FROM ANIMAL_OUTS WHERE HOUR(DATETIME) = @HOUR) AS COUNT
+FROM ANIMAL_OUTS
+WHERE @HOUR < 23
