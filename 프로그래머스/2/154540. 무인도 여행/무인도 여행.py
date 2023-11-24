@@ -16,7 +16,7 @@ def bfs(x, y, len_x, len_y, maps, ch):
             if -1 < nx < len_x and -1 < ny < len_y and ch[nx][ny] == 0 and maps[nx][ny].isdigit():
                 ch[nx][ny] = 1
                 d += int(maps[nx][ny])
-                dq.append([nx, ny, ])
+                dq.append([nx, ny])
     return d
     
 
